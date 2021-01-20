@@ -2,3 +2,6 @@ Hello There <br>
 <% @users.each do |user| %>
   <%= user.email %> <br>
 <% end %>
+<hr>
+<h3>Current User:</h3>
+<h3><%= current_user.email if logged_in? %></h3>
