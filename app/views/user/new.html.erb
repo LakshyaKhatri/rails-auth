@@ -1,13 +1,19 @@
-<section class="form-container">
+<section class="signup-container">
   <h2 class="form-heading">Sign Up</h2>
 
-  <%= form_with model: @user, url: signup_url, method: :post do |form| %>
-    <%= form.text_field :first_name %>
-    <%= form.text_field :last_name %>
-    <%= form.email_field :email %>
-    <%= form.password_field :password %>
-    <%= form.password_field :password_confirmation %>
-    <%= form.submit "Signup" %>
-  <% end %>
+  <div class="form-container">
+    <%= form_with model: @user, url: signup_url, method: :post do |form| %>
+      <%= form.text_field :first_name %>
+      <%= form.text_field :last_name %>
+      <%= form.email_field :email %>
+      <%= form.password_field :password %>
+      <%= form.password_field :password_confirmation %>
+      <%= form.submit "Signup" %>
+    <% end %>
+  </div>
 
+  <div class="already-registered">
+    <p class="already-registered-txt">Already registered?</p>
+    <%= link_to 'Login here', login_url %>
+  </div>
 </section>
