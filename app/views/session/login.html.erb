@@ -1,19 +1,21 @@
-<section class="form-container">
+<section class="signup-login-container">
   <h2 class="form-heading">Login</h2>
 
-  <%= form_with url: login_url, method: :post do |form| %>
-    <%= form.email_field :email, required:true %>
-    <%= form.password_field :password, required:true %>
-    <p class="field-error-txt"><%= @error %></p>
-    <%= form.submit "Login" %>
-  <% end %>
+  <div class="form-container">
+    <%= form_with url: login_url, method: :post do |form| %>
+      <%= form.email_field :email, required:true %>
+      <%= form.password_field :password, required:true %>
+      <p class="field-error-txt"><%= @error %></p>
+      <%= form.submit "Login" %>
+    <% end %>
+  </div>
 
-  <div class="not-registered">
-    <p class="not-registered-txt">Not registered?</p>
+  <div class="bottom-link-container">
+    <p class="bottom-link-txt">Not registered?</p>
     <%= link_to 'Signup here', signup_url %>
   </div>
 
-  <div class="forgot-password">
+  <div class="bottom-link-container">
     <%= link_to 'Forgot Password?', signup_url %>
   </div>
 
