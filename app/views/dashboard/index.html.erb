@@ -1,1 +1,4 @@
-Hello There
+Hello There <br>
+<% @users.each do |user| %>
+  <%= user.email %> <br>
+<% end %>
