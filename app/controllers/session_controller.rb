@@ -14,4 +14,9 @@ class SessionController < ApplicationController
       render :login
     end
   end
+
+  def logout
+    session.delete(:user_id)
+    redirect_to login_url
+  end
 end
