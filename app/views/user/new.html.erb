@@ -1,0 +1,13 @@
+<section class="form-container">
+  <h2 class="form-heading">Sign Up</h2>
+
+  <%= form_with model: @user, url: signup_url, method: :post do |form| %>
+    <%= form.text_field :first_name %>
+    <%= form.text_field :last_name %>
+    <%= form.email_field :email %>
+    <%= form.password_field :password %>
+    <%= form.password_field :password_confirmation %>
+    <%= form.submit "Signup" %>
+  <% end %>
+
+</section>
