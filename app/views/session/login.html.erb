@@ -1,0 +1,10 @@
+<section class="form-container">
+  <h2 class="form-heading">Login</h2>
+
+  <%= form_with url: login_url, method: :post do |form| %>
+    <%= form.email_field :email %>
+    <%= form.password_field :password %>
+    <%= form.submit "Login" %>
+  <% end %>
+
+</section>
