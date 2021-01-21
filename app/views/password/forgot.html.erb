@@ -6,7 +6,7 @@
     <%= form_with url: password_forgot_url, method: :post do |form| %>
       <%= form.email_field :email, required:true %>
       <p class="field-error-txt"><%= @error %></p>
-      <%= form.submit "Email reset link" %>
+      <%= form.submit "Send reset link" %>
     <% end %>
   </div>
 
