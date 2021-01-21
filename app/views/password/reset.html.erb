@@ -1,0 +1,14 @@
+<section class="main-container">
+  <h2 class="form-heading">Reset Password</h2>
+
+  <div class="form-container">
+    <%= form_with model: @user, url: password_reset_url, method: :post do |form| %>
+      <%= form.password_field :password %>
+      <p class="field-error-txt"><%= @user.errors.full_messages_for(:password)[0] %></p>
+      <%= form.password_field :password_confirmation %>
+      <p class="field-error-txt"><%= @user.errors.full_messages_for(:password_confirmation)[0] %></p>
+      <%= form.submit "Reset Password" %>
+    <% end %>
+  </div>
+
+</section>
