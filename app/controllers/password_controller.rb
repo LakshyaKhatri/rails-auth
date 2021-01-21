@@ -7,7 +7,7 @@ class PasswordController < ApplicationController
 
     if user.present?
       user.generate_password_token!
-      UserMailer.with(user: user).reset_password_email.deliver_later
+      ResetPasswordEmailWorker.perform_async(user.id)
       flash[:alert] = 'E-mail sent with password reset instructions.'
       redirect_to login_url
     else

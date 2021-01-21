@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'dashboard#index'
 
@@ -14,4 +16,6 @@ Rails.application.routes.draw do
     get '/reset/:token', to: 'password#reset', as: :reset
     post '/reset/:token', to: 'password#change_password', as: :change_password
   end
+
+  mount Sidekiq::Web => '/sidekiq'
 end
