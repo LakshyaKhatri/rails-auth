@@ -2,9 +2,9 @@
   <h2 class="form-heading">Forgot Password?</h2>
 
   <div class="form-container">
-    <p class="enter-email-link">Enter your email to receive a password reset link.</p>
     <%= form_with url: password_forgot_url, method: :post do |form| %>
-      <%= form.email_field :email, required:true %>
+      <p class="enter-email-txt">Enter your email to receive a password reset link.</p>
+      <%= form.email_field :email, required: true, placeholder: 'example@domain.com' %>
       <p class="field-error-txt"><%= @error %></p>
       <%= form.submit "Send reset link" %>
     <% end %>

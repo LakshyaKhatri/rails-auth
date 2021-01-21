@@ -3,9 +3,9 @@
 
   <div class="form-container">
     <%= form_with model: @user, url: password_reset_url, method: :post do |form| %>
-      <%= form.password_field :password %>
+      <%= form.password_field :password, placeholder: 'New Password' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:password)[0] %></p>
-      <%= form.password_field :password_confirmation %>
+      <%= form.password_field :password_confirmation, placeholder: 'Confirm New Password' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:password_confirmation)[0] %></p>
       <%= form.submit "Reset Password" %>
     <% end %>

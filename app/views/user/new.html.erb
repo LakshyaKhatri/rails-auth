@@ -3,15 +3,15 @@
 
   <div class="form-container">
     <%= form_with model: @user, url: signup_url, method: :post do |form| %>
-      <%= form.text_field :first_name %>
+      <%= form.text_field :first_name, class:'form-field', placeholder: 'Firstname' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:first_name)[0] %></p>
-      <%= form.text_field :last_name %>
+      <%= form.text_field :last_name, class:'form-field', placeholder: 'Lastname' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:last_name)[0] %></p>
-      <%= form.email_field :email %>
+      <%= form.email_field :email, class:'form-field', placeholder: 'example@domain.com' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:email)[0] %></p>
-      <%= form.password_field :password %>
+      <%= form.password_field :password, class:'form-field', placeholder: 'Password' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:password)[0] %></p>
-      <%= form.password_field :password_confirmation %>
+      <%= form.password_field :password_confirmation, class:'form-field', placeholder: 'Confirm Password' %>
       <p class="field-error-txt"><%= @user.errors.full_messages_for(:password_confirmation)[0] %></p>
       <%= form.submit "Signup" %>
     <% end %>

@@ -3,10 +3,12 @@
 
   <div class="form-container">
     <%= form_with url: login_url, method: :post do |form| %>
-      <%= form.email_field :email, required:true %>
-      <%= form.password_field :password, required:true %>
-      <p class="field-error-txt"><%= @error %></p>
-      <%= form.submit "Login" %>
+      <%= form.email_field :email, required:true, class:'form-field', placeholder: 'example@domain.com' %>
+      <%= form.password_field :password, required:true, class:'form-field', placeholder: 'Password' %>
+      <% unless @error.nil? %>
+        <p class="field-error-txt"><%= @error %></p>
+      <% end %>
+      <%= form.submit "Login", class:'submit-btn' %>
     <% end %>
   </div>
 
