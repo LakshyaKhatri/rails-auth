@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_104954) do
+ActiveRecord::Schema.define(version: 2021_01_21_063903) do
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_01_20_104954) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
   end
 
 end
