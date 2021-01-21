@@ -31,7 +31,6 @@ class PasswordController < ApplicationController
     if !@user.present?
       flash[:alert] = 'Link expired. Please generate a new link.'
       redirect_to login_url
-      
     elsif @user.update(user_params)
       flash[:alert] = 'Password reset successful. Login again using your new password.'
       redirect_to login_url
