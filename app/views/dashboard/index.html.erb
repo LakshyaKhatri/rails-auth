@@ -1,9 +1,4 @@
-Hello There <br>
-<% @users.each do |user| %>
-  <%= user.email %> <br>
-<% end %>
-<hr>
-<h3>Current User:</h3>
-<h3><%= current_user.email if logged_in? %></h3>
+<h1>Hello There!</h1>
+<h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
 
 <%= link_to 'Logout', logout_url %>
