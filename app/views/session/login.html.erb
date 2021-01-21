@@ -1,3 +1,7 @@
+<% unless flash[:alert].nil? %>
+  <p class="field-error-txt"><%= flash[:alert] %></p>
+<% end %>
+
 <section class="main-container">
   <h2 class="form-heading">Login</h2>
 
@@ -5,9 +9,6 @@
     <%= form_with url: login_url, method: :post do |form| %>
       <%= form.email_field :email, required:true, class:'form-field', placeholder: 'example@domain.com' %>
       <%= form.password_field :password, required:true, class:'form-field', placeholder: 'Password' %>
-      <% unless @error.nil? %>
-        <p class="field-error-txt"><%= @error %></p>
-      <% end %>
       <%= form.submit "Login", class:'submit-btn' %>
     <% end %>
   </div>
@@ -21,5 +22,3 @@
     <%= link_to 'Forgot Password?', password_forgot_url %>
   </div>
 </section>
-
-<%= flash[:alert] %>

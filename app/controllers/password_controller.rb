@@ -11,7 +11,7 @@ class PasswordController < ApplicationController
       flash[:alert] = 'E-mail sent with password reset instructions.'
       redirect_to login_url
     else
-      @error = "No user registered with this email!"
+      flash[:alert] = "No user registered with this email!"
       render :forgot
     end
   end

@@ -1,3 +1,5 @@
+<p class="field-error-txt"><%= flash[:alert] %></p>
+
 <section class="main-container">
   <h2 class="form-heading">Forgot Password?</h2>
 
@@ -5,7 +7,6 @@
     <%= form_with url: password_forgot_url, method: :post do |form| %>
       <p class="enter-email-txt">Enter your email to receive a password reset link.</p>
       <%= form.email_field :email, required: true, placeholder: 'example@domain.com' %>
-      <p class="field-error-txt"><%= @error %></p>
       <%= form.submit "Send reset link" %>
     <% end %>
   </div>
