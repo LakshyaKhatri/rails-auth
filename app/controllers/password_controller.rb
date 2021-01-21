@@ -28,12 +28,11 @@ class PasswordController < ApplicationController
   def change_password
     @user = User.find_by(reset_password_token: params[:token])
 
-    if !user.present?
+    if !@user.present?
       flash[:alert] = 'Link expired. Please generate a new link.'
       redirect_to login_url
-    end
-
-    if @user.update(user_params)
+      
+    elsif @user.update(user_params)
       flash[:alert] = 'Password reset successful. Login again using your new password.'
       redirect_to login_url
     else
