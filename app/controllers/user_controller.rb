@@ -14,12 +14,6 @@ class UserController < ApplicationController
     end
   end
 
-  def generate_password_token!
-    self.reset_password_token = generate_token
-    self.reset_password_sent_at = Time.now.utc
-    save!
-  end
-
   private
   def user_params
     params.require(:user).permit(
@@ -29,9 +23,5 @@ class UserController < ApplicationController
       :password,
       :password_confirmation
     )
-  end
-
-  def generate_token
-    SecureRandom.hex(10)
   end
 end
