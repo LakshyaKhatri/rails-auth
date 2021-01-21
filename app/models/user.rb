@@ -11,6 +11,10 @@ class User < ApplicationRecord
     self.save
   end
 
+  def password_token_valid?
+    (self.reset_password_sent_at + 20.minutes) > Time.now.utc
+  end
+
   private
   def generate_token
     SecureRandom.hex(10)

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   scope '/password', as: :password do
     get '/forgot', to: 'password#forgot'
     post '/forgot', to: 'password#create_reset_token'
-    post '/reset/:token', to: 'password#reset', as: :reset
+    get '/reset/:token', to: 'password#reset', as: :reset
+    post '/reset/:token', to: 'password#change_password', as: :reset
   end
 end
