@@ -8,8 +8,8 @@ class PasswordController < ApplicationController
     if user.present?
       user.generate_password_token!
       UserMailer.with(user: user).reset_password_email.deliver_now
-      @info = 'We have emailed you a reset password link. The link will expire after 2 minutes.'
-      render :forgot
+      flash[:notice] = 'E-mail sent with password reset instructions.'
+      redirect_to login_url
     else
       @error = "No user registered with this email!"
       render :forgot
