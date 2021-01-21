@@ -7,7 +7,7 @@ class SessionController < ApplicationController
   def new
     @user = User.find_by(email: params[:email])
 
-    if !@user.nil? and @user.authenticate(params[:password])
+    if @user.present? and @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to root_url
     else
