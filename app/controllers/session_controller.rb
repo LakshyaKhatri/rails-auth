@@ -11,7 +11,7 @@ class SessionController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      flash[:alert] = "Invalid email or password!"
+      flash[:notice] = "Invalid email or password!"
       render :login
     end
   end

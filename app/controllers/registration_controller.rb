@@ -8,7 +8,8 @@ class RegistrationController < ApplicationController
 
     if @user.save
       WelcomeEmailWorker.perform_async(@user.id)
-      redirect_to root_url
+      flash[:notice] = 'Signed Up successfully. Please login to continue.'
+      redirect_to login_url
     else
       render :new
     end
