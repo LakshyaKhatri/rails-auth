@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'session#new'
   get '/logout', to: 'session#logout'
 
-  get '/signup', to: 'user#new'
-  post '/signup', to: 'user#create'
+  get '/signup', to: 'registration#new'
+  post '/signup', to: 'registration#create'
 
   scope '/password', as: :password do
     get '/forgot', to: 'password#forgot'
