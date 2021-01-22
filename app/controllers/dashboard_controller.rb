@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :require_login
 
   def index
-    redirect_to login_url if !logged_in?
   end
 end

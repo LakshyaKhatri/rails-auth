@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.present?
   end
+
+  private
+  def require_login
+    redirect_to login_url unless logged_in?
+  end
 end
