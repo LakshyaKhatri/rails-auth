@@ -10,12 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_120854) do
+ActiveRecord::Schema.define(version: 2021_01_22_124516) do
+
+  create_table "applied_taxes", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "tax_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"item\", \"tax\"", name: "index_applied_taxes_on_item_and_tax", unique: true
+    t.index ["item_id"], name: "index_applied_taxes_on_item_id"
+    t.index ["tax_id"], name: "index_applied_taxes_on_tax_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "price", null: false
+    t.boolean "is_imported", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "taxes", force: :cascade do |t|
