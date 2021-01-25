@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
     get '/signup', to: 'registration#new'
     post '/signup', to: 'registration#create'
-    # resources :items, only: [:new, :create]
 
     scope '/password', as: :password do
       get '/forgot', to: 'password#forgot'
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
       get '/reset/:token', to: 'password#reset', as: :reset
       post '/reset/:token', to: 'password#change_password', as: :change_password
     end
+
+    resources :items, only: [:new, :create]
   end
 
   mount Sidekiq::Web => '/sidekiq'
