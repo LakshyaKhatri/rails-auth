@@ -1,3 +1,19 @@
-<h1 class="user-greeting">Hi, <%= current_user.first_name %> <%= current_user.last_name %></h1>
+<section>
+  <div class="count-container">
+    <p class="count-obj-name">Total Items</p>
+    <p class="count-txt"><%= @item_count %></p>
+    <a href="" class="add-things-href">Add New Item</a>
+  </div>
+  <div class="count-container">
+    <p class="count-obj-name">Total Categories</p>
+    <p class="count-txt"><%= @category_count %></p>
+    <a href="" class="add-things-href">Add New Category</a>
+  </div>
+  <div class="count-container">
+    <p class="count-obj-name">Total Tax Type</p>
+    <p class="count-txt"><%= @types_of_tax_count %></p>
+    <a href="" class="add-things-href">Add New Tax Type</a>
+  </div>
+</section>
 
 <%= link_to 'Logout', logout_url, class:'logout-link' %>
