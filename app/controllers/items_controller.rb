@@ -2,7 +2,10 @@ class ItemsController < ApplicationController
   before_action :require_login
 
   def new
-    @item = Item.new(category_id: 1)
+    category = Category.first
+    category_id = category.id if category.present?
+
+    @item = Item.new(category_id: category_id )
   end
 
   def create
@@ -16,6 +19,13 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price, :in_stock, :is_imported, :category_id)
+    params.require(:item).permit(
+      :name,
+      :price,
+      :in_stock,
+      :is_imported,
+      :category_id,
+      tax_ids: []
+    )
   end
 end

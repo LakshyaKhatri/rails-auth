@@ -14,7 +14,12 @@
     </p>
     <div class="form-select">
       <p class="select-label">Category:</p>
-      <%= form.collection_select :category_id, Category.order(:name), :id, :name, class:'form-field', placeholder: 'Price' %>
+      <%= form.collection_select :category_id, Category.order(:name), :id, :name %>
+    </div>
+    <p class="field-error-txt"><%= @item.errors.full_messages_for(:category_id)[0] %></p>
+    <div class="form-select">
+      <p class="select-label">Applied Taxes:</p>
+      <%= form.select :tax_ids, Tax.order(:name).collect {|tax| [tax.name, tax.id]}, {}, multiple: true %>
     </div>
     <%= form.submit class: 'submit-btn' %>
   <% end %>
