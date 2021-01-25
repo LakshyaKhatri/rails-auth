@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root 'dashboard#index'
+  root 'admin_dashboard#index'
 
   get '/login', to: 'session#login'
   post '/login', to: 'session#new'
