@@ -4,7 +4,9 @@
   </p>
   <%= form_with model: @item do |form| %>
     <%= form.text_field :name, class:'form-field', placeholder: 'Item Name' %>
+    <p class="field-error-txt"><%= @item.errors.full_messages_for(:name)[0] %></p>
     <%= form.number_field :price, min: 0.1, step:0.1, class:'form-field', placeholder: 'Price' %>
+    <p class="field-error-txt"><%= @item.errors.full_messages_for(:price)[0] %></p>
     <p class="is-imported">
       <span><%= form.check_box :is_imported %></span> Imported
     </p>
