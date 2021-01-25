@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_01_22_124516) do
 
-  create_table "applied_taxes", force: :cascade do |t|
+  create_table "applied_taxes", id: false, force: :cascade do |t|
     t.integer "item_id", null: false
     t.integer "tax_id", null: false
     t.datetime "created_at", precision: 6, null: false
