@@ -19,8 +19,9 @@ Rails.application.routes.draw do
       get '/reset/:token', to: 'password#reset', as: :reset
       post '/reset/:token', to: 'password#change_password', as: :change
     end
+
+    resources :items, only: [:new, :create]
   end
 
-  resources :items
   mount Sidekiq::Web => '/sidekiq'
 end

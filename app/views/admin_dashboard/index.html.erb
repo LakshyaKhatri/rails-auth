@@ -2,7 +2,8 @@
   <div class="count-container">
     <p class="count-obj-name">Total Items</p>
     <p class="count-txt"><%= @item_count %></p>
-    <a href="" class="add-things-href">Add New Item</a>
+    <%= link_to 'Show Items', new_admin_item_url, class: 'card-btn' %>
+    <%= link_to 'Add Item', new_admin_item_url, class: 'card-btn' %>
   </div>
   <div class="count-container">
     <p class="count-obj-name">Total Categories</p>
