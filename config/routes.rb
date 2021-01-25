@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get '/forgot', to: 'password#forgot'
       post '/forgot', to: 'password#create_reset_token'
       get '/reset/:token', to: 'password#reset', as: :reset
-      post '/reset/:token', to: 'password#change_password', as: :change_password
+      post '/reset/:token', to: 'password#change_password', as: :change
     end
 
     resources :items, only: [:new, :create]
