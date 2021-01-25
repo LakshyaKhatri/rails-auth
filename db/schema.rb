@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_01_22_124516) do
 
-  create_table "applied_taxes", id: false, force: :cascade do |t|
+  create_table "applied_taxes", force: :cascade do |t|
     t.integer "item_id", null: false
     t.integer "tax_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"item\", \"tax\"", name: "index_applied_taxes_on_item_and_tax", unique: true
+    t.index ["item_id", "tax_id"], name: "index_applied_taxes_on_item_id_and_tax_id", unique: true
     t.index ["item_id"], name: "index_applied_taxes_on_item_id"
     t.index ["tax_id"], name: "index_applied_taxes_on_tax_id"
   end
