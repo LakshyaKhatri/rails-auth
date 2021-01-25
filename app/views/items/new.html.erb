@@ -12,8 +12,8 @@
     <p class="is-imported">
       <span><%= form.check_box :is_imported %></span> Imported
     </p>
-    <div class="item-category">
-      <p class="category-txt">Category:</p>
+    <div class="form-select">
+      <p class="select-label">Category:</p>
       <%= form.collection_select :category_id, Category.order(:name), :id, :name, class:'form-field', placeholder: 'Price' %>
     </div>
     <%= form.submit class: 'submit-btn' %>
