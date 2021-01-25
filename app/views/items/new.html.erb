@@ -8,7 +8,10 @@
     <p class="is-imported">
       <span><%= form.check_box :is_imported %></span> Imported
     </p>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :name, class:'form-field', placeholder: 'Price' %>
+    <div class="item-category">
+      <p class="category-txt">Category:</p>
+      <%= form.collection_select :category_id, Category.order(:name), :id, :name, class:'form-field', placeholder: 'Price' %>
+    </div>
     <%= form.submit class: 'submit-btn' %>
   <% end %>
 </section>
