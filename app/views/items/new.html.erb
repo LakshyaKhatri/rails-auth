@@ -3,10 +3,12 @@
     Add new Item
   </p>
   <%= form_with model: @item do |form| %>
-    <%= form.text_field :name %>
-    <%= form.number_field :price, min: 0.1, step:0.1 %>
-    <%= form.check_box :is_imported %>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :name %>
-    <%= form.submit %>
+    <%= form.text_field :name, class:'form-field', placeholder: 'Item Name' %>
+    <%= form.number_field :price, min: 0.1, step:0.1, class:'form-field', placeholder: 'Price' %>
+    <p class="is-imported">
+      <span><%= form.check_box :is_imported %></span> Imported
+    </p>
+    <%= form.collection_select :category_id, Category.order(:name), :id, :name, class:'form-field', placeholder: 'Price' %>
+    <%= form.submit class: 'submit-btn' %>
   <% end %>
 </section>
