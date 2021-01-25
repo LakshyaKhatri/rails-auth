@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_124516) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.float "price", null: false
+    t.integer "in_stock", null: false
     t.boolean "is_imported", null: false
     t.integer "category_id", default: 1
     t.datetime "created_at", precision: 6, null: false
