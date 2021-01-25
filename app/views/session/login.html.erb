@@ -6,7 +6,7 @@
   <h2 class="form-heading">Login</h2>
 
   <div class="form-container">
-    <%= form_with url: login_url, method: :post do |form| %>
+    <%= form_with url: admin_login_url, method: :post do |form| %>
       <%= form.email_field :email, required:true, class:'form-field', placeholder: 'example@domain.com' %>
       <%= form.password_field :password, required:true, class:'form-field', placeholder: 'Password' %>
       <%= form.submit "Login", class:'submit-btn' %>

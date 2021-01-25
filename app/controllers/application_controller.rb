@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
 
   private
   def require_login
-    redirect_to login_url unless logged_in?
+    redirect_to admin_login_url unless logged_in?
   end
 end
