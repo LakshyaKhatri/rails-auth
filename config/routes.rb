@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create]
   end
 
-  resources :items, only: [:index]
+  get '/items', to: 'items#index'
 
   mount Sidekiq::Web => '/sidekiq'
 end
