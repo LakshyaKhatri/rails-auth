@@ -24,10 +24,12 @@
         <td><%= item.name.titleize %></td>
         <td><%= item.taxed_price %></td>
         <td class="import-tag"><%= "imported" if item.is_imported %></td>
-        <td><button type="button" id="add-to-cart-btn">Add</button></td>
+        <td><button type="button" class="add-to-cart-btn">Add</button></td>
         <td hidden><%= render "count-btn" %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </section>
+
+<%= javascript_pack_tag 'items/main' %>
