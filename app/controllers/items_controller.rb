@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.calculate_tax
 
     if @item.save
       redirect_to admin_dashboard_url
