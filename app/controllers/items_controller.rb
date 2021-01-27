@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: [:new, :create]
 
   def new
     category = Category.first
@@ -19,6 +19,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def index
+  end
+  
+  private
   def item_params
     params.require(:item).permit(
       :name,
@@ -28,8 +32,5 @@ class ItemsController < ApplicationController
       :category_id,
       tax_ids: []
     )
-  end
-
-  def index
   end
 end
