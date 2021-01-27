@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  # HTML response routes
   root 'admin_dashboard#index'
 
   scope '/admin', as: :admin do
@@ -22,8 +23,15 @@ Rails.application.routes.draw do
 
     resources :items, only: [:new, :create]
   end
-
   get '/items', to: 'items#index'
 
+  # External appplication routes
   mount Sidekiq::Web => '/sidekiq'
+
+  # API routes
+  namespace :api do
+    namespace :v1, defaults: { format: :json } do
+      get 'items', to: 'items#list'
+    end
+  end
 end
