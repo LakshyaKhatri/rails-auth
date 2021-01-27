@@ -11,14 +11,23 @@
 </section>
 
 <section class="item-table-section">
-  <table>
+  <table class="items-table">
     <thead>
       <th>Name</th>
       <th>Price</th>
       <th>Imported</th>
+      <th>Add To Cart</th>
     </thead>
     <tbody>
-
+      <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name.titleize %></td>
+        <td><%= item.taxed_price %></td>
+        <td class="import-tag"><%= "imported" if item.is_imported %></td>
+        <td><button type="button" id="add-to-cart-btn">Add</button></td>
+        <td hidden><%= render "count-btn" %></td>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 </section>
