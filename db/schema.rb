@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_124516) do
+ActiveRecord::Schema.define(version: 2021_01_27_133200) do
 
   create_table "applied_taxes", force: :cascade do |t|
     t.integer "item_id", null: false
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 2021_01_22_124516) do
     t.index ["item_id", "tax_id"], name: "index_applied_taxes_on_item_id_and_tax_id", unique: true
     t.index ["item_id"], name: "index_applied_taxes_on_item_id"
     t.index ["tax_id"], name: "index_applied_taxes_on_tax_id"
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "qty", null: false
+    t.integer "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -59,4 +74,6 @@ ActiveRecord::Schema.define(version: 2021_01_22_124516) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "items"
 end
