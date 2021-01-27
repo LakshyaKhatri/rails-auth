@@ -29,4 +29,8 @@ class ItemsController < ApplicationController
       tax_ids: []
     )
   end
+
+  def index
+    
+  end
 end
