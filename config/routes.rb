@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      get 'items', to: 'items#list'
+      get '/items', to: 'items#list'
+      post '/cart/add-item', to: 'cart#add_item'
     end
   end
 end

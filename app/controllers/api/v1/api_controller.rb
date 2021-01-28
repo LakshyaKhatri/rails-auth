@@ -6,8 +6,8 @@ module Api
         render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
       end
 
-      def render_record_invalid(exception)
-        render json: { errors: exception.record.errors.as_json }, status: :bad_request
+      def render_record_invalid(record)
+        render json: { errors: record.errors }, status: :bad_request
       end
 
       def render_parameter_missing(exception)
