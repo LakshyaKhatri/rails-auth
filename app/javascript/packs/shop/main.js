@@ -1,8 +1,17 @@
 const BASE_URL = 'http://127.0.0.1:3000/';
 
+// Loads items for the very first time
+loadItems(1);
+
+// set respective listeners' callbacks
+$('#item-category-select').change(function() {
+  loadItems(this.value);
+});
+
 // Fetches items for given category and loads them using populate_table
 function loadItems(category){
-  $.get(BASE_URL + 'api/v1/items?category=' + category, function(data){
+  const url = `${BASE_URL}api/v1/items?category=${category}`;
+  $.get(url, function(data){
     populateTable(data);
   });
 }
@@ -13,7 +22,7 @@ function populateTable(items){
   const addBtn = '<button type="button" class="add-to-cart-btn">Add</button>';
 
   const itemsTableBody = document.getElementsByClassName('items-table')[0].children[1];
-  itemsTableBody.innerHTML = ''
+  itemsTableBody.innerHTML = '';
 
   items.forEach((item, index) => {
     const currentRow = itemsTableBody.insertRow(-1);
@@ -22,11 +31,11 @@ function populateTable(items){
     currentRow.insertCell(-1).innerHTML = item.taxed_price;
     currentRow.insertCell(-1).innerHTML = item.is_imported ? importTag : '';
     currentRow.insertCell(-1).innerHTML = addBtn;
+    const hiddenCell = currentRow.insertCell(-1);
+    hiddenCell.innerHTML = item.id;
+    hiddenCell.style.display = 'none';
   });
-}
 
-// Loads items for the very first time
-loadItems(1);
-$('#item-category-select').change(function() {
-  loadItems(this.value);
-});
+  // Add click listeners on Add to Cart Buttons
+  configAddToCartBtns();
+}
