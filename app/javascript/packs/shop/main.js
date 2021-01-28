@@ -1,7 +1,7 @@
 const BASE_URL = 'http://127.0.0.1:3000/';
 
 // Loads items for the very first time
-loadItems(1);
+loadItems($('#item-category-select').val());
 
 // set respective listeners' callbacks
 $('#item-category-select').change(function() {
