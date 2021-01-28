@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
     resources :items, only: [:new, :create]
   end
-  get '/items', to: 'items#index'
+  get '/shop', to: 'shop#index'
 
   # External appplication routes
   mount Sidekiq::Web => '/sidekiq'
