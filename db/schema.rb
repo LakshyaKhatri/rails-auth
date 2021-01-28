@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_133200) do
     t.integer "in_stock", null: false
     t.float "taxed_price", null: false
     t.boolean "is_imported", null: false
-    t.integer "category_id", default: 1
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_items_on_category_id"

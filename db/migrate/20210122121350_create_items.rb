@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :in_stock, null: false
       t.float :taxed_price, null: false
       t.boolean :is_imported, null: false
-      t.references :category, foreignkey: true, default: 1
+      t.references :category, foreignkey: true
 
       t.timestamps
     end
