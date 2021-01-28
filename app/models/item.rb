@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   def category_exists
     unless Category.find_by(id: self.category_id).present?
-      errors.add(:category_id, "category doesn't exists")
+      errors.add(:category_id, "doesn't exists")
     end
   end
 
