@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :in_stock, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :category_exists
 
+  before_save :calculate_tax
 
   def category_exists
     unless Category.find_by(id: self.category_id).present?
@@ -20,8 +21,7 @@ class Item < ApplicationRecord
     total_tax_rate = 0.0
     self.taxes.each {|tax| total_tax_rate += tax.rate }
 
-    self.taxed_price = self.price
-    self.taxed_price += ((self.price * total_tax_rate) / 100.0)
-    self.taxed_price = self.taxed_price.round(2)
+    tax_price = self.price + ((self.price * total_tax_rate) / 100.0)
+    self.taxed_price = tax_price
   end
 end

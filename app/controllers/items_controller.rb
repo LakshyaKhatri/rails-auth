@@ -5,12 +5,12 @@ class ItemsController < ApplicationController
     category = Category.first
     category_id = category.id if category.present?
 
-    @item = Item.new(category_id: category_id )
+    @item = Item.new
   end
 
   def create
     @item = Item.new(item_params)
-    @item.calculate_tax
+    # @item.calculate_tax
 
     if @item.save
       redirect_to admin_dashboard_url
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   def index
   end
-  
+
   private
   def item_params
     params.require(:item).permit(
