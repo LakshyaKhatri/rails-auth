@@ -46,18 +46,35 @@ function configAddToCartBtns(){
     const button = $(this);
     const itemID = button.parent().next().text();
 
-    addItemToCart(itemID, 1, button);
+    if (button.text() === 'Add') {
+      addItemToCart(itemID, button);
+    }
+    else {
+      removeItemFromCart(itemID, button);
+    }
+
   });
 }
 
-function addItemToCart(itemID, qty, elem){
+//TODO: Merge these two in one
+function addItemToCart(itemID, elem){
   const url = `${BASE_URL}cart/add-item/`
   $.post(url,
     {
       item_id: itemID,
-      qty: qty
     },
     function(data){
       elem.html('Remove');
+  });
+}
+
+function removeItemFromCart(itemID, elem){
+  const url = `${BASE_URL}cart/remove-item/`
+  $.post(url,
+    {
+      item_id: itemID,
+    },
+    function(data){
+      elem.html('Add');
   });
 }
