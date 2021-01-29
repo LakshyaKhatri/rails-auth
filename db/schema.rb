@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_083100) do
     t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index "\"cart\"", name: "index_orders_on_cart", unique: true
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
