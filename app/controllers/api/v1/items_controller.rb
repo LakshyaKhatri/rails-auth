@@ -3,6 +3,7 @@ module Api
     class ItemsController < Api::V1::ApiController
 
       def list
+        #TODO: don't go insane, replace with rails 
         @items = Item.find_by_sql(
           "SELECT id, name, taxed_price, is_imported, in_stock, (CASE WHEN EXISTS (SELECT id FROM #{CartItem.table_name}
             WHERE #{CartItem.table_name}.item_id = #{Item.table_name}.id AND

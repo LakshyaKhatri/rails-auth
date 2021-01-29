@@ -38,6 +38,8 @@ Rails.application.routes.draw do
         post '/add-item', to: 'cart#add_item'
         post '/remove-item', to: 'cart#remove_item'
         post '/item-exists', to: 'cart#item_exists'
+        post '/increase-qty', to: 'cart#increase_qty'
+        post '/decrease-qty', to: 'cart#decrease_qty'
       end
     end
   end

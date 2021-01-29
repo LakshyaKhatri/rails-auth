@@ -13,12 +13,15 @@
         <td><%= cart_item.item.taxed_price %></td>
         <td><%= "Imported" if cart_item.item.is_imported? %></td>
         <td>
-          <button type="button" id="decrease-count-btn">-</button>
-          <p id="count-text"><%= cart_item.qty %></p>
-          <button type="button" id="increase-count-btn">+</button>
+          <button type="button" class="decrease-qty-btn">-</button>
+          <p class="qty-text"><%= cart_item.qty %></p>
+          <button type="button" class="increase-qty-btn">+</button>
         </td>
+        <td hidden><%= cart_item.id %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </section>
+
+<%= javascript_pack_tag 'cart/main' %>
