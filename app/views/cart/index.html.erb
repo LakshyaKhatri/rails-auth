@@ -1,0 +1,24 @@
+<section class="cart-items-container">
+  <table class="cart-items-table">
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Imported</th>
+      <th>Quantity</th>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.item.name %></td>
+        <td><%= cart_item.item.taxed_price %></td>
+        <td><%= "Imported" if cart_item.item.is_imported? %></td>
+        <td>
+          <button type="button" id="decrease-count-btn">-</button>
+          <p id="count-text"><%= cart_item.qty %></p>
+          <button type="button" id="increase-count-btn">+</button>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
