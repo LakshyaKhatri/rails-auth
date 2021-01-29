@@ -19,7 +19,6 @@ function loadItems(category){
 // takes the input items data and creates table rows for them
 function populateTable(items){
   const importTag = '<p class="import-tag">Imported</p>';
-  const addBtn = '<button type="button" class="add-to-cart-btn">Add</button>';
 
   const itemsTableBody = document.getElementsByClassName('items-table')[0].children[1];
   itemsTableBody.innerHTML = '';
@@ -30,15 +29,25 @@ function populateTable(items){
     currentRow.insertCell(-1).innerHTML = item.name;
     currentRow.insertCell(-1).innerHTML = item.taxed_price;
     currentRow.insertCell(-1).innerHTML = item.is_imported ? importTag : '';
-    currentRow.insertCell(-1).innerHTML = addBtn;
+    generateButton(currentRow.insertCell(-1), item.id);
 
     const hiddenCell = currentRow.insertCell(-1);
     hiddenCell.innerHTML = item.id;
     hiddenCell.style.display = 'none';
   });
+}
 
-  // Add click listeners on Add to Cart Buttons
-  configAddToCartBtns();
+function generateButton(elem, itemID){
+  const url = `${BASE_URL}cart/item-exists/`;
+  $.post(url,
+    {
+      item_id: itemID,
+    },
+    function(exists){
+      const addRemove = (exists ? 'Remove' : 'Add');
+      elem.innerHTML = `<button type="button" class="add-to-cart-btn">${addRemove}</button>`;
+      configAddToCartBtns();
+  });
 }
 
 function configAddToCartBtns(){
@@ -52,7 +61,6 @@ function configAddToCartBtns(){
     else {
       removeItemFromCart(itemID, button);
     }
-
   });
 }
 

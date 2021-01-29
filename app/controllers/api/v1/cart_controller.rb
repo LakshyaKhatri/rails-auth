@@ -28,6 +28,13 @@ module Api
         end
       end
 
+      def item_exists
+        cart_item = CartItem.find_by(
+          item_id: params[:item_id],
+          cart: current_cart
+        )
+        render json: cart_item.present?
+      end
 
       private
       def current_cart
