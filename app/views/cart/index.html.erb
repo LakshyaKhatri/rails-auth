@@ -17,7 +17,8 @@
           <p class="qty-text"><%= cart_item.qty %></p>
           <button type="button" class="increase-qty-btn">+</button>
         </td>
-        <td hidden><%= cart_item.id %></td>
+        <td class="cart-item-id" hidden><%= cart_item.id %></td>
+        <td class="item-id" hidden><%= cart_item.item.id %></td>
       </tr>
       <% end %>
     </tbody>
