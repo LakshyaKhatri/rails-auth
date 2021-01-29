@@ -6,7 +6,7 @@ module Api
         @items = Item.find_by_sql(
           "SELECT id, name, taxed_price, is_imported, in_stock, (CASE WHEN EXISTS (SELECT id FROM #{CartItem.table_name}
             WHERE #{CartItem.table_name}.item_id = #{Item.table_name}.id AND
-            #{CartItem.table_name}.cart_id = #{session[:cart_id]}
+            #{CartItem.table_name}.cart_id = #{session[:cart_id] || -1}
           ) THEN 1 ELSE 0 END) as `in_cart`
           FROM #{Item.table_name}
           WHERE #{Item.table_name}.category_id = #{params[:category]} AND
