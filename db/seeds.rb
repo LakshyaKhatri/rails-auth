@@ -29,3 +29,19 @@ Item.create(
   is_imported:true,
   category_id:2
 )
+Item.create(
+  name:'Painkiller',
+  price:18.0,
+  taxed_price:21.5,
+  in_stock:12,
+  is_imported:false,
+  category_id:4
+)
+Item.create(
+  name:'Chainsaw',
+  price:842.32,
+  taxed_price:1083.21,
+  in_stock:11,
+  is_imported:true,
+  category_id:1
+)
