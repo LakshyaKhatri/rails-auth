@@ -13,6 +13,9 @@ module Api
         end
       end
 
+      def place
+
+      end
     end
   end
 end

@@ -1,3 +1,29 @@
 <section class="order-items-container">
+  <table class="cart-items-table">
+    <thead>
+      <th>Name</th>
+      <th>Imported</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <% @order.cart.cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.item.name %></td>
+        <td><%= "Imported" if cart_item.item.is_imported? %></td>
+        <td><%= cart_item.item.taxed_price %></td>
+        <td><%= cart_item.qty %></td>
+        <td><%= cart_item.item.taxed_price * cart_item.qty %></td>
+        <td class="cart-item-id" hidden><%= cart_item.id %></td>
+        <td class="item-id" hidden><%= cart_item.item.id %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
 
+<section class="purchase-container">
+  <br>
+  <button type="button" id="place-order-btn">Place Order</button>
 </section>
