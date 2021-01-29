@@ -39,3 +39,10 @@ function removeItemFromCart(itemID){
   const url = `${BASE_URL}cart/remove-item/`
   $.post(url, { item_id: itemID, });
 }
+
+function checkout(){
+  const url = `${BASE_URL}api/v1/checkout/`
+  $.post(url,{}, function(){
+    window.location.replace(`${BASE_URL}checkout/`);
+  });
+}
