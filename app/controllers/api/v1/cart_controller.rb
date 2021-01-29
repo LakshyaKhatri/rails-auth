@@ -16,6 +16,7 @@ module Api
         end
       end
 
+
       private
       def current_cart
         Cart.find_by(id:session[:cart_id])

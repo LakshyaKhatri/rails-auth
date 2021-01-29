@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_133200) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["item_id", "cart_id"], name: "index_cart_items_on_item_id_and_cart_id", unique: true
     t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
