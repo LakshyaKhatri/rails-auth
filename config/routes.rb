@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create]
   end
   get '/shop', to: 'shop#index'
+  get '/cart', to: 'cart#index'
 
   # External appplication routes
   mount Sidekiq::Web => '/sidekiq'
@@ -32,9 +33,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       get '/items', to: 'items#list'
-      post '/cart/add-item', to: 'cart#add_item'
-      post '/cart/remove-item', to: 'cart#remove_item'
-      post '/cart/item-exists', to: 'cart#item_exists'
+
+      scope '/cart', as: :cart do
+        post '/add-item', to: 'cart#add_item'
+        post '/remove-item', to: 'cart#remove_item'
+        post '/item-exists', to: 'cart#item_exists'
+      end
     end
   end
 end
