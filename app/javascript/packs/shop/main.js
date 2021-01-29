@@ -29,25 +29,15 @@ function populateTable(items){
     currentRow.insertCell(-1).innerHTML = item.name;
     currentRow.insertCell(-1).innerHTML = item.taxed_price;
     currentRow.insertCell(-1).innerHTML = item.is_imported ? importTag : '';
-    generateButton(currentRow.insertCell(-1), item.id);
+    const addRemove = (item.in_cart ? 'Remove' : 'Add');
+    currentRow.insertCell(-1).innerHTML = `<button type="button" class="add-to-cart-btn">${addRemove}</button>`;
 
     const hiddenCell = currentRow.insertCell(-1);
     hiddenCell.innerHTML = item.id;
     hiddenCell.style.display = 'none';
   });
-}
 
-function generateButton(elem, itemID){
-  const url = `${BASE_URL}cart/item-exists/`;
-  $.post(url,
-    {
-      item_id: itemID,
-    },
-    function(exists){
-      const addRemove = (exists ? 'Remove' : 'Add');
-      elem.innerHTML = `<button type="button" class="add-to-cart-btn">${addRemove}</button>`;
-      configAddToCartBtns();
-  });
+  configAddToCartBtns();
 }
 
 function configAddToCartBtns(){
