@@ -5,6 +5,7 @@ class CartItem < ApplicationRecord
   validates :qty, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validate :cart_exists
   validate :item_exists
+  validates :item, uniqueness: { scope: :cart, message: "already exists in cart" }
 
   def item_exists
     unless Item.find_by(id: self.item_id).present?
