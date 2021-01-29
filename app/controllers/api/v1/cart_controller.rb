@@ -13,6 +13,7 @@ module Api
       end
 
       def remove_item
+        #TODO: use current cart relation to get cart item instead
         if current_cart.present?
           cart_item = CartItem.find_by(
             item_id: params[:item_id],

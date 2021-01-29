@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:3000/api/v1/';
+const BASE_URL = 'http://127.0.0.1:3000/';
 
 // Loads items for the very first time
 loadItems($('#item-category-select').val());
@@ -10,7 +10,7 @@ $('#item-category-select').change(function() {
 
 // Fetches items for given category and loads them using populate_table
 function loadItems(category){
-  const url = `${BASE_URL}items?category=${category}`;
+  const url = `${BASE_URL}api/v1/items?category=${category}`;
   $.get(url, function(data){
     populateTable(data);
   });
@@ -56,7 +56,7 @@ function configAddToCartBtns(){
 
 //TODO: Merge these two in one
 function addItemToCart(itemID, elem){
-  const url = `${BASE_URL}cart/add-item/`
+  const url = `${BASE_URL}api/v1/cart/add-item/`
   $.post(url,
     {
       item_id: itemID,
@@ -67,12 +67,19 @@ function addItemToCart(itemID, elem){
 }
 
 function removeItemFromCart(itemID, elem){
-  const url = `${BASE_URL}cart/remove-item/`
+  const url = `${BASE_URL}api/v1/cart/remove-item/`
   $.post(url,
     {
       item_id: itemID,
     },
     function(data){
       elem.html('Add');
+  });
+}
+
+function checkout(){
+  const url = `${BASE_URL}api/v1/checkout/`
+  $.post(url,{}, function(){
+    window.location.replace(`${BASE_URL}checkout/`);
   });
 }
