@@ -35,7 +35,7 @@ module Api
 
         if cart_item.present?
           cart_item.qty += 1
-          render_record_invalid "Cannot increase quantity" unless cart_item.save
+          render_record_invalid cart_item.errors unless cart_item.save
         else
           render_record_invalid "Item doesn't exists in cart"
         end

@@ -6,6 +6,7 @@ class CartItem < ApplicationRecord
   validate :cart_exists
   validate :item_exists
   validates :item, uniqueness: { scope: :cart, message: "already exists in cart" }
+  validate :available_in_stock
 
   def item_exists
     unless Item.find_by(id: self.item_id).present?
@@ -17,5 +18,9 @@ class CartItem < ApplicationRecord
     unless Cart.find_by(id: self.cart_id).present?
       errors.add(:cart_id, "Cart doesn't exists")
     end
+  end
+
+  def available_in_stock
+    errors.add(:qty, "Out of Stock") if self.qty > self.item.in_stock
   end
 end

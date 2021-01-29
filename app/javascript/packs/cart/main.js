@@ -28,6 +28,9 @@ $('.increase-qty-btn').click(function() {
     },
     function(){
       btn.prev().text(parseInt(btn.prev().text()) + 1);
+    }
+  ).fail(function(){
+      alert("Not enough stock");
     });
 });
 
