@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
   get '/shop', to: 'shop#index'
   get '/cart', to: 'cart#index'
-  post '/checkout', to: 'order#index'
+  get '/checkout', to: 'order#index'
 
   # External appplication routes
   mount Sidekiq::Web => '/sidekiq'
