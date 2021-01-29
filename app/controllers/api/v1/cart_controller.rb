@@ -33,13 +33,9 @@ module Api
       def increase_qty
         #TODO: Handle db connection loss
         cart_item = CartItem.find_by(id: params[:cart_item_id])
-
-        if cart_item.present?
-          cart_item.qty += 1
-          render_record_invalid cart_item.errors unless cart_item.save
-        else
-          render_record_invalid "Item doesn't exists in cart"
-        end
+        return render_record_invalid "Item doesn't exists in cart" unless cart_item.present?
+        cart_item.qty += 1
+        render_record_invalid cart_item.errors unless cart_item.save
       end
 
       def decrease_qty
