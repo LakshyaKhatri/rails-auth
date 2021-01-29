@@ -1,8 +1,8 @@
-const BASE_URL = 'http://127.0.0.1:3000/api/v1/';
+const BASE_URL = 'http://127.0.0.1:3000/';
 
 $('.decrease-qty-btn').click(function() {
   const btn = $(this);
-  const url = `${BASE_URL}/cart/decrease-qty/`;
+  const url = `${BASE_URL}api/v1/cart/decrease-qty/`;
 
   $.post(url,
     {
@@ -21,7 +21,7 @@ $('.decrease-qty-btn').click(function() {
 
 $('.increase-qty-btn').click(function() {
   const btn = $(this);
-  const url = `${BASE_URL}/cart/increase-qty/`;
+  const url = `${BASE_URL}api/v1/cart/increase-qty/`;
   $.post(url,
     {
       cart_item_id: btn.parent().next().text(),
@@ -36,13 +36,13 @@ $('.increase-qty-btn').click(function() {
 
 //TODO: Repeating, Could be moved to single file
 function removeItemFromCart(itemID){
-  const url = `${BASE_URL}cart/remove-item/`
+  const url = `${BASE_URL}api/v1/cart/remove-item/`
   $.post(url, { item_id: itemID, });
 }
 
-function checkout(){
-  const url = `${BASE_URL}api/v1/checkout/`
+$('#checkout-btn').click(function() {
+  const url = `${BASE_URL}api/v1/checkout/`;
   $.post(url,{}, function(){
     window.location.replace(`${BASE_URL}checkout/`);
   });
-}
+});
