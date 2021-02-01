@@ -4,7 +4,7 @@ module Api
       def create
         return render_record_invalid "Cart already exists" if current_cart.present?
 
-        @cart = Cart.new(total:0.0)
+        @cart = Cart.new
         return render json: "Unable to create cart" unless @cart.save
 
         session[:cart_id] = @cart.id

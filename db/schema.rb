@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_130744) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.float "total", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
