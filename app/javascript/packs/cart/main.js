@@ -54,8 +54,8 @@ function removeItemFromCart(cartItemID){
 $('#checkout-btn').click(function() {
   const url = `${BASE_URL}api/v1/order/`;
   $.post(url,{}, function(){
-    window.location.href = `${BASE_URL}checkout/`;
+    window.location.href = `${BASE_URL}order/`;
   }).fail(function(){
-    window.location.href = `${BASE_URL}checkout/`;
+    window.location.href = `${BASE_URL}order/`;
   });
 });

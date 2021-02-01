@@ -23,17 +23,15 @@ Rails.application.routes.draw do
 
     resources :items, only: [:new, :create]
   end
-  get '/shop', to: 'shop#index'
-  get '/cart', to: 'cart#index'
-  get '/checkout', to: 'order#index'
-
-  # External appplication routes
-  mount Sidekiq::Web => '/sidekiq'
+  #Ask why rsource now working
+  resources :shop, only: :index
+  resources :cart, only: :index
+  resources :order, only: :index
 
   # API routes
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      get '/items', to: 'items#list'
+      resources :items, only: :index
 
       scope '/cart', as: :cart do
         post '/', to: 'cart#create'
@@ -43,4 +41,7 @@ Rails.application.routes.draw do
       resources :order, only: :create
     end
   end
+
+  # External appplication routes
+  mount Sidekiq::Web => '/sidekiq'
 end
