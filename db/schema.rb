@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_02_01_130744) do
   end
 
   create_table "carts", force: :cascade do |t|
+    t.float "total", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,11 +72,8 @@ ActiveRecord::Schema.define(version: 2021_02_01_130744) do
 
   create_table "orders", force: :cascade do |t|
     t.float "total", null: false
-    t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"cart\"", name: "index_orders_on_cart", unique: true
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "taxes", force: :cascade do |t|
