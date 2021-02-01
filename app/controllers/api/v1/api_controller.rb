@@ -6,8 +6,8 @@ module Api
         Cart.find_by(id:session[:cart_id])
       end
 
-      def require_cart
-        render_record_invalid "Cart doesn't exists yet." unless current_cart.present?
+      def cart_required
+        render_record_invalid("Cart doesn't exists yet.") unless current_cart.present?
       end
 
       def render_not_found(exception)
