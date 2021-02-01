@@ -3,6 +3,8 @@ class Cart < ApplicationRecord
   has_many :items, through: :cart_items
   has_one :order
 
+  validates :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
 
   private
   def empty_cart
