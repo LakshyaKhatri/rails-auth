@@ -9,7 +9,7 @@ $('.decrease-qty-btn').click(function() {
     url: url,
     type: 'PATCH',
     data: {
-      operation: 'decr'
+      qty: -1
     },
     success: function(data){
       btn.next().text(data.qty);
@@ -31,7 +31,7 @@ $('.increase-qty-btn').click(function() {
     url: url,
     type: 'PATCH',
     data: {
-      operation: 'incr'
+      qty: +1
     },
     success: function(data){
       btn.prev().text(data.qty);

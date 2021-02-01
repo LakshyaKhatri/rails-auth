@@ -35,11 +35,11 @@ module Api
       end
 
       def update
-        # Work arround: ideally we should be getting qty in params
+        # Work arround! (we should be getting qty in params instead)
         @cart_item = current_cart.cart_items.find_by(id: params[:id])
         return render_not_found unless @cart_item.present?
 
-        @cart_item.qty += (params[:operation] == 'incr' ? 1 : -1)
+        @cart_item.qty += params[:qty]
         return render_record_invalid @cart_item.errors unless @cart_item.save
         render json: { qty: @cart_item.qty }
       end
