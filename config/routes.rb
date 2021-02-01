@@ -40,8 +40,7 @@ Rails.application.routes.draw do
         resources :cart_items
       end
 
-      #TODO: use order
-      post '/checkout', to: 'order#create'
+      resources :order, only: :create
     end
   end
 end

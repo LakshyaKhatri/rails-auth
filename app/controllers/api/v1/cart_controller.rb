@@ -10,7 +10,6 @@ module Api
         session[:cart_id] = @cart.id
         render json: {}, status: :created
       end
-      end
     end
   end
 end
