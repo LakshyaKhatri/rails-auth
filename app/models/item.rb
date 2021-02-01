@@ -1,6 +1,15 @@
 class Item < ApplicationRecord
   belongs_to :category
 
+  scope :with_cart_item_ids, ->(category) {
+      left_outer_joins(:cart_items).where(
+      'items.category_id = ?', category
+    ).distinct.select(
+      "items.*,
+      cart_items.id as cart_item_id"
+    ).group('items.id')
+  }
+
   has_many :applied_taxes
   has_many :taxes, through: :applied_taxes
   has_many :cart_items
