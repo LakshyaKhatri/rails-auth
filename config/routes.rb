@@ -35,13 +35,9 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       get '/items', to: 'items#list'
 
-      #TODO: use resource
       scope '/cart', as: :cart do
-        post '/add-item', to: 'cart#add_item'
-        post '/remove-item', to: 'cart#remove_item'
-        #TODO: use put and use a single route
-        post '/increase-qty', to: 'cart#increase_qty'
-        post '/decrease-qty', to: 'cart#decrease_qty'
+        post '/', to: 'cart#create'
+        resources :cart_items
       end
 
       #TODO: use order

@@ -2,42 +2,53 @@ const BASE_URL = 'http://127.0.0.1:3000/';
 
 $('.decrease-qty-btn').click(function() {
   const btn = $(this);
-  const url = `${BASE_URL}api/v1/cart/decrease-qty/`;
+  const cartItemID = btn.parent().next().text();
+  const url = `${BASE_URL}api/v1/cart/cart_items/${cartItemID}`;
 
-  $.post(url,
-    {
-      cart_item_id: btn.parent().next().text(),
+  $.ajax({
+    url: url,
+    type: 'PATCH',
+    data: {
+      operation: 'decr'
     },
-    function(){
-      btn.next().text(parseInt(btn.next().text()) - 1);
-    }
-  ).fail(function(){
+    success: function(data){
+      btn.next().text(data.qty);
+    },
+    error: function(){
       if (confirm('Remove this item form cart?')) {
-        removeItemFromCart(btn.parent().next().next().text());
+        removeItemFromCart(cartItemID);
         btn.parents('tr').remove();
       }
-    });
+    },
+  });
 });
 
 $('.increase-qty-btn').click(function() {
   const btn = $(this);
-  const url = `${BASE_URL}api/v1/cart/increase-qty/`;
-  $.post(url,
-    {
-      cart_item_id: btn.parent().next().text(),
+  const cartItemID = btn.parent().next().text();
+  const url = `${BASE_URL}api/v1/cart/cart_items/${cartItemID}`;
+  $.ajax({
+    url: url,
+    type: 'PATCH',
+    data: {
+      operation: 'incr'
     },
-    function(){
-      btn.prev().text(parseInt(btn.prev().text()) + 1);
-    }
-  ).fail(function(){
+    success: function(data){
+      btn.prev().text(data.qty);
+    },
+    error: function(){
       alert("Not enough stock");
-    });
+    }
+  });
 });
 
 //TODO: Repeating, Could be moved to single file
-function removeItemFromCart(itemID){
-  const url = `${BASE_URL}api/v1/cart/remove-item/`
-  $.post(url, { item_id: itemID, });
+function removeItemFromCart(cartItemID){
+  const url = `${BASE_URL}api/v1/cart/cart_items/${cartItemID}`
+  $.ajax({
+    url: url,
+    type: 'DELETE',
+  });
 }
 
 $('#checkout-btn').click(function() {
