@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_29_083100) do
+ActiveRecord::Schema.define(version: 2021_02_01_130744) do
 
   create_table "applied_taxes", force: :cascade do |t|
     t.integer "item_id", null: false
@@ -56,6 +56,19 @@ ActiveRecord::Schema.define(version: 2021_01_29_083100) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "qty"
+    t.float "price"
+    t.integer "order_id", null: false
+    t.boolean "available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id", "order_id"], name: "index_order_items_on_item_id_and_order_id", unique: true
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.float "total", null: false
     t.integer "cart_id", null: false
@@ -86,4 +99,6 @@ ActiveRecord::Schema.define(version: 2021_01_29_083100) do
 
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
 end
