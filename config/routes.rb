@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         post '/decrease-qty', to: 'cart#decrease_qty'
       end
 
-      #TODO: user order
+      #TODO: use order
       post '/checkout', to: 'order#create'
     end
   end
