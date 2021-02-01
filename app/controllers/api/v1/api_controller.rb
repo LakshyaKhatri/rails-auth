@@ -10,8 +10,8 @@ module Api
         render_record_invalid("Cart doesn't exists yet.") unless current_cart.present?
       end
 
-      def render_not_found(exception)
-        render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
+      def render_not_found()
+        render json: { error: 'Resource not found.' }, status: :not_found
       end
 
       def render_record_invalid(errors)
