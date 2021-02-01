@@ -12,7 +12,6 @@ module Api
       def show
         @cart_item = current_cart.cart_items.find_by(id: params[:id])
         return render json: @cart_item if @cart_item.present?
-
         render_not_found
       end
 
@@ -22,7 +21,6 @@ module Api
           qty: 1,
           cart: current_cart
         )
-
         return render_record_invalid cart_item.errors unless @cart_item.save
         render json: @cart_item, status: :created
       end
@@ -43,7 +41,6 @@ module Api
 
         @cart_item.qty += (params[:operation] == 'incr' ? 1 : -1)
         return render_record_invalid @cart_item.errors unless @cart_item.save
-
         render json: { qty: @cart_item.qty }
       end
     end
