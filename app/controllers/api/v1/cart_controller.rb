@@ -1,6 +1,16 @@
 module Api
   module V1
     class CartController < Api::V1::ApiController
+      def create
+        return render_record_invalid "Cart already exists" if current_cart.present?
+
+        @cart = Cart.new
+        return render json: "Unable to create cart" unless @cart.save
+
+        session[:cart_id] = @cart.id
+        render json: {}, status: :created
+      end
+
       def add_item
         create_cart unless current_cart.present?
         cart_item = CartItem.new(
@@ -47,16 +57,6 @@ module Api
         else
           render_record_invalid "Item doesn't exists in cart"
         end
-      end
-
-
-      private
-      def create_cart
-        cart = Cart.new
-        if cart.save
-          session[:cart_id] = cart.id
-        end
-        #TODO: Do something if db connection is not established.
       end
     end
   end
