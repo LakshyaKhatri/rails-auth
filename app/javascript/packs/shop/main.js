@@ -70,6 +70,7 @@ function addItemToCart(itemID, elem){
     },
     function(data){
       elem.html('Remove');
+      elem.parent().next().next().text(data.id);
   });
 }
 
