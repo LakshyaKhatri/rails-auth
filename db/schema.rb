@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_130744) do
     t.integer "qty"
     t.float "price"
     t.integer "order_id", null: false
-    t.boolean "available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id", "order_id"], name: "index_order_items_on_item_id_and_order_id", unique: true

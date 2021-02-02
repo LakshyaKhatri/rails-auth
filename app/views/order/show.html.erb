@@ -6,17 +6,19 @@
       <th>Price</th>
       <th>Quantity</th>
       <th>Total</th>
+      <th>Availability</th>
     </thead>
     <tbody>
-      <% @order.cart.cart_items.each do |cart_item| %>
+      <% @order.order_items.each do |order_item| %>
       <tr>
-        <td><%= cart_item.item.name %></td>
-        <td><%= "Imported" if cart_item.item.is_imported? %></td>
-        <td><%= cart_item.item.taxed_price %></td>
-        <td><%= cart_item.qty %></td>
-        <td><%= cart_item.item.taxed_price * cart_item.qty %></td>
-        <td class="cart-item-id" hidden><%= cart_item.id %></td>
-        <td class="item-id" hidden><%= cart_item.item.id %></td>
+        <td><%= order_item.item.name %></td>
+        <td><%= "Imported" if order_item.item.is_imported? %></td>
+        <td><%= order_item.price %></td>
+        <td><%= order_item.qty %></td>
+        <td><%= order_item.price * order_item.qty %></td>
+        <td><%= (order_item.qty <= order_item.item.in_stock) ? "Available" : "Out of stock" %></td>
+        <td class="cart-item-id" hidden><%= order_item.id %></td>
+        <td class="item-id" hidden><%= order_item.item.id %></td>
       </tr>
       <% end %>
     </tbody>

@@ -11,7 +11,6 @@ class Order < ApplicationRecord
         item: item,
         qty: cart_item.qty,
         price: item.taxed_price,
-        available: cart_item.qty <= item.in_stock,
         order: self,
       )
 
