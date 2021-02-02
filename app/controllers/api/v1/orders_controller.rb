@@ -16,9 +16,9 @@ module Api
 
       def place
         @order = Order.find_by(id:params[:order_id])
-        unavailable = @order.order_items.joins(:item).where("order_items.qty >= items.in_stock").count(:id)
+        unavailable = @order.order_items.joins(:item).where("order_items.qty >= items.in_stock").count(:id) > 0
 
-        return render_record_invalid "Item not available" if unavailable > 0
+        return render_record_invalid "Item not available" if unavailable
         @order.cart.delete
         @order.save
       end
