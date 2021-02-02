@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   has_many :cart_items
   has_many :items, through: :cart_items
-  has_one :order
+  has_many :orders
 
   private
   def empty_cart
