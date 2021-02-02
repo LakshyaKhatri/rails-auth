@@ -24,9 +24,10 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create]
   end
   #Ask why rsource now working
+  #Use show instead of index
   resources :shop, only: :index
   resources :cart, only: :index
-  resources :order, only: :index
+  resources :order, only: :show
 
   # API routes
   namespace :api do
@@ -38,7 +39,10 @@ Rails.application.routes.draw do
         resources :cart_items
       end
 
-      resources :order, only: :create
+      scope '/order', as: :order do
+        post '/', to: 'order#create'
+        resources :order_items, only: [:index, :create]
+      end
     end
   end
 
