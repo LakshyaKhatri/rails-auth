@@ -10,7 +10,7 @@ module Api
         @order = Order.new(total: order_total, cart: cart)
         return render_record_invalid @order.errors unless @order.save
 
-        @order.create_order_items(cart)
+        @order.create_order_items
         render json: @order
       end
 
