@@ -1,6 +1,6 @@
 module Api
   module V1
-    class OrderController < Api::V1::ApiController
+    class OrdersController < Api::V1::ApiController
       before_action :cart_required
 
       def create
@@ -12,6 +12,15 @@ module Api
 
         @order.create_order_items(cart)
         render json: @order
+      end
+
+      def place
+        @order = Order.find_by(id:params[:order_id])
+        unavailable = @order.order_items.joins(:item).where("order_items.qty >= items.in_stock").count(:id)
+
+        return render_record_invalid "Item not available" if unavailable > 0
+        @order.cart.delete
+        @order.save
       end
     end
   end

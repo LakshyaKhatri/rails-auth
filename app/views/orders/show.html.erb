@@ -23,9 +23,14 @@
       <% end %>
     </tbody>
   </table>
+
+  <p class="order-total"><b>Order Total: </b><%= @order.total %></p>
 </section>
 
 <section class="purchase-container">
   <br>
   <button type="button" id="place-order-btn">Place Order</button>
+  <p hidden><%= @order.id %></p>
 </section>
+
+<%= javascript_pack_tag 'order/main' %>

@@ -52,10 +52,10 @@ function removeItemFromCart(cartItemID){
 }
 
 $('#checkout-btn').click(function() {
-  const url = `${BASE_URL}api/v1/order/`;
+  const url = `${BASE_URL}api/v1/orders/`;
   $.post(url,{}, function(data){
-    window.location.href = `${BASE_URL}order/${data.id}`;
+    window.location.href = `${BASE_URL}orders/${data.id}`;
   }).fail(function(){
-    window.location.href = `${BASE_URL}order/${data.id}`;
+    window.location.href = `${BASE_URL}orders/${data.id}`;
   });
 });

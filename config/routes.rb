@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   #Use show instead of index
   resources :shop, only: :index
   resources :cart, only: :index
-  resources :order, only: :show
+  resources :orders, only: :show
 
   # API routes
   namespace :api do
@@ -39,9 +39,8 @@ Rails.application.routes.draw do
         resources :cart_items
       end
 
-      scope '/order', as: :order do
-        post '/', to: 'order#create'
-        resources :order_items, only: [:index, :create]
+      resources :orders, only: :create do
+        post '/place', to: 'orders#place'
       end
     end
   end

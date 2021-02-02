@@ -99,4 +99,5 @@ ActiveRecord::Schema.define(version: 2021_02_01_130744) do
   add_foreign_key "cart_items", "items"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "carts", on_delete: :nullify
 end
