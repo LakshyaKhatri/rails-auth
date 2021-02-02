@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resources :items, only: :index
 
+      #TODO: use resource here
       scope '/cart', as: :cart do
         post '/', to: 'cart#create'
         resources :cart_items

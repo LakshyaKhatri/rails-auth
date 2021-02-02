@@ -7,7 +7,7 @@ module Api
         cart = current_cart
 
         order_total = cart.cart_items.joins(:item).sum("items.taxed_price * cart_items.qty")
-        @order = Order.new(total: order_total, cart: cart)
+        @order = Order.new(total: order_total, cart_id: cart.id)
         return render_record_invalid @order.errors unless @order.save
 
         @order.create_order_items
@@ -19,7 +19,7 @@ module Api
         unavailable = @order.order_items.joins(:item).where("order_items.qty >= items.in_stock").count(:id) > 0
 
         return render_record_invalid "Item not available" if unavailable
-        @order.cart.delete
+        current_cart.delete
         @order.save
       end
     end
