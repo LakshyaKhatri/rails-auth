@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
 
     unless @order.present?
       flash[:notice] = 'Order not created yet. Please checkout to create a new order.'
-      redirect_to cart_url
+      redirect_to cart_index_url
     end
   end
 end
