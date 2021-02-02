@@ -4,10 +4,7 @@ class Item < ApplicationRecord
   scope :with_cart_item_ids, ->(category) {
       left_outer_joins(:cart_items).where(
       'items.category_id = ?', category
-    ).distinct.select(
-      "items.*,
-      cart_items.id as cart_item_id"
-    ).group('items.id')
+    ).select( "items.*, cart_items.id as cart_item_id" )
   }
 
   has_many :applied_taxes
