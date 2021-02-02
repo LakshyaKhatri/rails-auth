@@ -1,6 +1,10 @@
 module Api
   module V1
     class ApiController < ActionController::API
+      # Create a cookie instead and whenever the user returns
+      # rails check if that cart persists in db and returns it.
+      # If the cart is not present in db it will create a new
+      # cart and overwrites the cookie.
       private
       def current_cart
         Cart.find_by(id:session[:cart_id])
