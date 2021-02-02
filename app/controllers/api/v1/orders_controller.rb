@@ -16,11 +16,12 @@ module Api
 
       def place
         @order = Order.find_by(id:params[:order_id])
+        return render_not_found unless @order.present?
         unavailable = @order.order_items.joins(:item).where("order_items.qty >= items.in_stock").count(:id) > 0
 
         return render_record_invalid "Item not available" if unavailable
         current_cart.delete
-        @order.save
+        session[:cart_id] = nil
       end
     end
   end
