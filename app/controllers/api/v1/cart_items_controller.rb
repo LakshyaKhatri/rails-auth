@@ -39,7 +39,7 @@ module Api
         @cart_item = current_cart.cart_items.find_by(id: params[:id])
         return render_not_found unless @cart_item.present?
 
-        @cart_item.qty += params[:qty]
+        @cart_item.qty += params[:qty].to_i
         return render_record_invalid @cart_item.errors unless @cart_item.save
         render json: { qty: @cart_item.qty }
       end
